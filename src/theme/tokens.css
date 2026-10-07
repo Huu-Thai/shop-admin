@@ -1,0 +1,211 @@
+/*
+ * Shop Admin design tokens — see docs/STYLE-GUIDE.md. Components use the semantic tokens only
+ * (--bg, --surface, --fg …); presets and dark mode override those, never component styles.
+ * Every text/background pairing here is measured against WCAG 2.2 AA.
+ */
+
+:root {
+  /* Ink — the neutral scale built from the base colour #191919 */
+  --ink-950: #0f0f0f;
+  --ink-900: #191919;
+  --ink-800: #232323;
+  --ink-700: #2e2e2e;
+  --ink-600: #3d3d3d;
+  --ink-500: #5c5c5c;
+  --ink-400: #8a8a8a;
+  --ink-300: #b8b8b8;
+  --ink-200: #e4e4e2;
+  --ink-100: #efefed;
+  --ink-50: #f6f6f4;
+
+  /* Accent scale (preset: Ink · Lime) */
+  --accent-50: #f7fde8;
+  --accent-100: #ecfac7;
+  --accent-300: #d4f27a;
+  --accent-400: #c3eb4d;
+  --accent-700: #5c7a0e;
+  --accent-900: #2f3f08;
+
+  /* Status */
+  --success: #16a34a;
+  --success-soft: #eaf7ee;
+  --success-fg: #166534;
+  --warning: #d97706;
+  --warning-soft: #fef4e2;
+  --warning-fg: #92400e;
+  --danger: #dc2626;
+  --danger-soft: #fdecec;
+  --danger-fg: #991b1b;
+  --info: #2563eb;
+  --info-soft: #eaf1fe;
+  --info-fg: #1e40af;
+
+  /* Charts (in order) */
+  --chart-1: var(--ink-900);
+  --chart-2: var(--accent-400);
+  --chart-3: #7c8cf8;
+  --chart-4: #f59e8b;
+  --chart-5: #5cc2b4;
+  --chart-6: #e9b949;
+
+  /* Semantic — light */
+  --bg: var(--ink-50);
+  --surface: #ffffff;
+  --surface-muted: var(--ink-100);
+  --surface-inverse: var(--ink-900);
+  --surface-inverse-hover: var(--ink-800);
+  --surface-inverse-active: var(--ink-700);
+  --fg: var(--ink-900);
+  --fg-muted: var(--ink-500);
+  --fg-subtle: #6b6b69;
+  --fg-inverse: #ffffff;
+  --fg-inverse-muted: var(--ink-300);
+  --border: var(--ink-200);
+  --border-strong: var(--ink-400);
+  --primary: var(--ink-900);
+  --primary-hover: var(--ink-800);
+  --primary-fg: #ffffff;
+  --accent: var(--accent-400);
+  --accent-fg: var(--ink-900);
+  --accent-soft: var(--accent-50);
+  --accent-text: var(--accent-700);
+  --ring: var(--ink-900);
+
+  /* Shape and depth */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --shadow-xs: 0 1px 2px rgb(25 25 25 / 0.05);
+  --shadow-sm: 0 1px 3px rgb(25 25 25 / 0.08), 0 1px 2px rgb(25 25 25 / 0.04);
+  --shadow-md: 0 6px 16px -4px rgb(25 25 25 / 0.1);
+  --shadow-lg: 0 16px 40px -8px rgb(25 25 25 / 0.18);
+
+  /* Layout */
+  --sidebar-width: 264px;
+  --sidebar-collapsed-width: 76px;
+  --header-height: 64px;
+  --content-max: 1440px;
+  --form-max: 880px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 260ms;
+
+  color-scheme: light;
+}
+
+/* Semantic — dark */
+.dark {
+  --bg: var(--ink-950);
+  --surface: var(--ink-900);
+  --surface-muted: var(--ink-800);
+  --surface-inverse: #262626;
+  --surface-inverse-hover: #2e2e2e;
+  --surface-inverse-active: #383838;
+  --fg: #f2f2f0;
+  --fg-muted: var(--ink-300);
+  --fg-subtle: var(--ink-400);
+  --fg-inverse: #ffffff;
+  --fg-inverse-muted: var(--ink-300);
+  --border: var(--ink-700);
+  --border-strong: #6e6e6e;
+  --primary: var(--accent-400);
+  --primary-hover: var(--accent-300);
+  --primary-fg: var(--ink-900);
+  --accent-soft: rgb(195 235 77 / 0.12);
+  --accent-text: var(--accent-300);
+  --ring: var(--accent-400);
+  --success-soft: rgb(22 163 74 / 0.16);
+  --success-fg: #86efac;
+  --warning-soft: rgb(217 119 6 / 0.18);
+  --warning-fg: #fcd34d;
+  --danger-soft: rgb(220 38 38 / 0.18);
+  --danger-fg: #fca5a5;
+  --info-soft: rgb(37 99 235 / 0.18);
+  --info-fg: #93c5fd;
+  --chart-1: #ededeb;
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.5);
+  --shadow-md: 0 6px 16px -4px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 16px 40px -8px rgb(0 0 0 / 0.7);
+  color-scheme: dark;
+}
+
+/* Presets: change the accent only (docs/THEMING.md). */
+[data-theme='cobalt'] {
+  --accent-50: #eef2ff;
+  --accent-100: #dfe6ff;
+  --accent-300: #9fb2ff;
+  --accent-400: #7d94ff;
+  --accent-700: #3448c5;
+  --accent-900: #16205c;
+  --accent-fg: var(--ink-900);
+}
+.dark[data-theme='cobalt'] {
+  --accent-soft: rgb(125 148 255 / 0.14);
+}
+
+[data-theme='coral'] {
+  --accent-50: #fff1ed;
+  --accent-100: #ffe1d8;
+  --accent-300: #ffb59f;
+  --accent-400: #ff9b7d;
+  --accent-700: #b4421f;
+  --accent-900: #4f1a0b;
+  --accent-fg: var(--ink-900);
+}
+.dark[data-theme='coral'] {
+  --accent-soft: rgb(255 155 125 / 0.14);
+}
+
+[data-theme='teal'] {
+  --accent-50: #e9fbf8;
+  --accent-100: #cdf5ee;
+  --accent-300: #7fe3d3;
+  --accent-400: #4fd1bd;
+  --accent-700: #0f6e62;
+  --accent-900: #073a34;
+  --accent-fg: var(--ink-900);
+}
+.dark[data-theme='teal'] {
+  --accent-soft: rgb(79 209 189 / 0.14);
+}
+
+[data-theme='amber'] {
+  --accent-50: #fff8e6;
+  --accent-100: #ffefc2;
+  --accent-300: #ffd76f;
+  --accent-400: #ffc24b;
+  --accent-700: #8a5a00;
+  --accent-900: #432b00;
+  --accent-fg: var(--ink-900);
+}
+.dark[data-theme='amber'] {
+  --accent-soft: rgb(255 194 75 / 0.14);
+}
+
+[data-theme='violet'] {
+  --accent-50: #f5f0ff;
+  --accent-100: #ebe0ff;
+  --accent-300: #cbb5ff;
+  --accent-400: #b69cff;
+  --accent-700: #5b37c4;
+  --accent-900: #2a1764;
+  --accent-fg: var(--ink-900);
+}
+.dark[data-theme='violet'] {
+  --accent-soft: rgb(182 156 255 / 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

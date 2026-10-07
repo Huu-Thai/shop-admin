@@ -1,0 +1,14 @@
+# Example: Shop Admin next to an existing shop API. Copy to docker-compose.yml and adjust.
+services:
+  admin:
+    build:
+      context: .
+      args:
+        MEDIA_ORIGINS: '' # e.g. http://localhost:9200 for MinIO in development
+    ports:
+      - '3001:3000'
+    environment:
+      SHOP_API_URL: http://shop-api:3000 # the shop API as seen from this container
+      SESSION_SECRET: ${SESSION_SECRET:?set SESSION_SECRET (openssl rand -base64 48)}
+      # DEMO_MODE: 'true'
+    restart: unless-stopped

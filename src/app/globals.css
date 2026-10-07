@@ -1,26 +1,201 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '../theme/tokens.css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Dark mode follows the `dark` class set by the theme provider. */
+@custom-variant dark (&:where(.dark, .dark *));
 
+/* Design tokens → Tailwind utilities (bg-surface, text-fg-muted, border-border, rounded-lg …). */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-surface-inverse-hover: var(--surface-inverse-hover);
+  --color-surface-inverse-active: var(--surface-inverse-active);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-fg-inverse: var(--fg-inverse);
+  --color-fg-inverse-muted: var(--fg-inverse-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+  --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-fg: var(--success-fg);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-fg: var(--warning-fg);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-fg: var(--danger-fg);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-fg: var(--info-fg);
+
+  --color-ink-950: var(--ink-950);
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-ink-700: var(--ink-700);
+  --color-ink-600: var(--ink-600);
+  --color-ink-500: var(--ink-500);
+  --color-ink-400: var(--ink-400);
+  --color-ink-300: var(--ink-300);
+  --color-ink-200: var(--ink-200);
+  --color-ink-100: var(--ink-100);
+  --color-ink-50: var(--ink-50);
+  --color-lime-400: var(--accent-400);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --ease-standard: var(--ease-standard);
+  --ease-emphasized: var(--ease-emphasized);
+
+  /* Type scale (docs/STYLE-GUIDE.md §3) */
+  --text-display: 36px;
+  --text-display--line-height: 44px;
+  --text-h1: 28px;
+  --text-h1--line-height: 36px;
+  --text-h2: 22px;
+  --text-h2--line-height: 30px;
+  --text-h3: 18px;
+  --text-h3--line-height: 26px;
+  --text-h4: 16px;
+  --text-h4--line-height: 24px;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 24px;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-small: 13px;
+  --text-small--line-height: 18px;
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-overline: 11px;
+  --text-overline--line-height: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--accent-300);
+    color: var(--ink-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes sa-pop {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+}
+@keyframes sa-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  /* Entering popovers, menus and dialogs (Radix sets data-state). */
+  .animate-pop[data-state='open'],
+  .animate-pop[data-state='delayed-open'] {
+    animation: sa-pop var(--duration-base) var(--ease-emphasized);
+  }
+  .animate-fade[data-state='open'],
+  .animate-fade[data-state='delayed-open'] {
+    animation: sa-fade var(--duration-base) var(--ease-standard);
+  }
+  /* Dialogs are centred with translate: keep it while animating. */
+  [role='dialog'].animate-pop[data-state='open'] {
+    animation-name: sa-fade;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .focus-ring {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  .focus-ring:focus-visible {
+    outline-color: var(--ring);
+  }
+  .transition-standard {
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+}
+
+@keyframes sa-slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+}
+@layer utilities {
+  .sa-drawer[data-state='open'] {
+    animation: sa-slide-in var(--duration-slow) var(--ease-emphasized);
+  }
+}
+
+@keyframes sa-slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+@layer utilities {
+  .sa-sheet[data-state='open'] {
+    animation: sa-slide-in-right var(--duration-slow) var(--ease-emphasized);
+  }
 }

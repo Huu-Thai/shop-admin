@@ -1,0 +1,12 @@
+.next
+node_modules
+coverage
+src/server/shop-api.d.ts
+next-env.d.ts
+package-lock.json
+test-results
+playwright-report
+lighthouse-report
+e2e/.auth
+THIRD-PARTY-NOTICES.md
+dist
